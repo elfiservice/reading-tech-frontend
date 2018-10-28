@@ -13,10 +13,20 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <Home />
+        {
+          this.props.loading === true 
+            ? null
+            : <Home /> 
+        }
       </div>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps({ posts }) {
+  return {
+    loading: posts === {}
+  }
+}
+
+export default connect(mapStateToProps)(App);

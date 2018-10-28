@@ -14,7 +14,7 @@ export function getPosts() {
 
 export function handleInitialData() {
     return (dispatch) => {
-        Promise.all([getCategories(), getPosts()])
+       return Promise.all([getCategories(), getPosts()])
             .then(([catData, postsData]) => {
                 const categories = catData.data.categories
                 const posts = postsData.data
