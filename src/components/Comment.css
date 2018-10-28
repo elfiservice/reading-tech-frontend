@@ -17,3 +17,18 @@
     padding: 10px;
     background-color: #f8f8f8;
 }
+
+.comment .vote {
+    display: flex;
+    justify-content: left;
+}
+
+.comment .score, .comment .up, .comment .down {
+    padding: 10px 5px 0px 5px;
+    margin: 0px 5px;
+    font-size: 1.1em;
+}
+/* 
+.comment .score {
+    font-size: 1.1em;
+} */

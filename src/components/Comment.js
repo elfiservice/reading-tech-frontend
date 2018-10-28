@@ -13,6 +13,13 @@ const Comment = (props) => {
             <div className="body">
                 {body}
             </div>
+            <div className="vote">
+                <div className="score">
+                    {voteScore}
+                </div>
+                <div className="up"><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
+                <div className="down"><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></div>
+            </div>
         </div>
     )
 }
