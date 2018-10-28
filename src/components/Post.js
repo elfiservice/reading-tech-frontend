@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import './Post.css'
 
 import { formatDate } from '../util/helpers'
+import CommentList from './CommentList'
 
 const Post = (props) => {
-    const { title, author, body, commentCount, timestamp, voteScore } = props.post   
+    const { id, title, author, body, commentCount, timestamp, voteScore } = props.post   
     return (
         <article className="post">
             <header className="inverse-color content">
@@ -26,7 +27,7 @@ const Post = (props) => {
                     <div>{commentCount} comments</div>
                 </div>
                 <div className="comments-container">
-                    {/* toDo: commentList compt */}
+                    <CommentList postId={id} />
                 </div>
             </div>
 

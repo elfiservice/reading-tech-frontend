@@ -8,6 +8,15 @@ export const formatDate = (date) => {
     return `${day}/${month + 1}/${year} at ${(hours < 10 ? "0"+hours : hours)}:${(min < 10 ? "0"+min : min)}`
 }
 
+export const idObjToKeyInArray = (array) => {
+    let newArray = []
+    for (let index = 0; index < array.length; index++) {
+        const id = array[index].id;
+        newArray[id] = array[index]
+    }
+    return newArray; 
+}
+
 export const toggleBtnLoader = (btnElement, classNameLoader = false) => {
 
     if(!classNameLoader) {
