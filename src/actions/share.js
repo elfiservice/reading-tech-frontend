@@ -8,19 +8,18 @@ function getCategories() {
     return ApiAxios.get('/categories')
 }
 
-function getPosts() {
+export function getPosts() {
     return ApiAxios.get('/posts')
 }
 
 export function handleInitialData() {
     return (dispatch) => {
-        return ApiAxios.all([getCategories(), getPosts()])
-            .then(ApiAxios.spread(function (categories, posts) {
-                // Both requests are now complete
-                console.log(categories)
-                console.log(posts)
-                // dispatch(receiveCategories(categories))
-                // dispatch(receivePosts(posts))
-            }));
+        Promise.all([getCategories(), getPosts()])
+            .then(([catData, postsData]) => {
+                const categories = catData.data.categories
+                const posts = postsData.data
+                dispatch(receiveCategories(categories))
+                dispatch(receivePosts(posts))
+            });
     }
 } 
