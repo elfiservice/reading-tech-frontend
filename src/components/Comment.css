@@ -1,0 +1,19 @@
+.comment {
+    padding: 10px 20px;
+    border: 1px dotted #000;
+}
+
+.comment .apresetation {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.comment .author {
+    color: #000;
+    font-weight: bold
+}
+
+.comment .body {
+    padding: 10px;
+    background-color: #f8f8f8;
+}

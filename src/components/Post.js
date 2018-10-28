@@ -26,9 +26,9 @@ const Post = (props) => {
                 <div className="comments-count">
                     <div>{commentCount} comments</div>
                 </div>
-                <div className="comments-container">
+            </div>
+            <div className="comments-container">
                     <CommentList postId={id} />
-                </div>
             </div>
 
         </article>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import './CommentList.css'
 
 import { handleReceiveComments } from '../actions/comments'
+import Comment from './Comment'
 
 class CommentList extends Component {
     componentDidMount() {
@@ -10,9 +12,20 @@ class CommentList extends Component {
 
     render() {
         return (
-            <div> See the Comments </div>
+            <div className="comment-list"> 
+                {this.props.comments.map( comment => (
+                    <Comment key={comment.id} comment={comment} />
+                ))}
+            </div>
         )
     }
 }
 
-export default connect()(CommentList)
+function mapStateToProps({ comments }, { postId }) {
+    return {
+        comments: Object.values(comments)
+            .filter( comment => comment.parentId === postId )
+    }
+}
+
+export default connect(mapStateToProps)(CommentList)
