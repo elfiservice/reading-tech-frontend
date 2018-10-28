@@ -1,22 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Post from './Post'
+
 const PostList = (props) => {
     return (
-        <ul className="post-list">
-            {props.postsIds.map(id => (
-                <li key={id}>
-                    <div>post id = {id}</div>
-                </li>
-            ))}
-        </ul>
+        <div className="post-list">
+            {props.postsIds.map( id => <Post key={id} id={id} /> )}
+        </div>
     )
 }
 
 function mapStateToProps({ posts }) {
     return {
         postsIds: Object.keys(posts)
-      .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
+            .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
     }
 }
 
