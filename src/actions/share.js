@@ -19,7 +19,17 @@ export function handleInitialData() {
                 const categories = catData.data.categories
                 const posts = postsData.data
                 dispatch(receiveCategories(categories))
-                dispatch(receivePosts(posts))
+                dispatch(receivePosts(idObjToKeyInArray(posts)))
             });
     }
 } 
+
+
+function idObjToKeyInArray(array) {
+    let newArray = []
+    for (let index = 0; index < array.length; index++) {
+        const id = array[index].id;
+        newArray[id] = array[index]
+    }
+    return newArray; 
+}
