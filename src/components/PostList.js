@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const PostList = (props) => {
-    console.log(props.postsIds);
-    
     return (
         <ul className="post-list">
             {props.postsIds.map(id => (
