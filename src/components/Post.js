@@ -4,6 +4,7 @@ import './Post.css'
 
 import { formatDate } from '../util/helpers'
 import CommentList from './CommentList'
+import AddComment from './AddComment'
 
 const Post = (props) => {
     const { id, title, author, body, commentCount, timestamp, voteScore } = props.post   
@@ -28,7 +29,8 @@ const Post = (props) => {
                 </div>
             </div>
             <div className="comments-container">
-                    <CommentList postId={id} />
+                <AddComment postId={id} />
+                <CommentList postId={id} />
             </div>
 
         </article>

@@ -1,0 +1,13 @@
+.add-comment .form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-comment input {
+    width: 100%;
+    background-color: #ddd;
+}
+
+.add-comment .author-input {
+    width: 30%;
+}

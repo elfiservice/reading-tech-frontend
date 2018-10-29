@@ -1,3 +1,5 @@
+import uuidv1 from 'uuid/v1';
+
 export const formatDate = (date) => {
     var d = new Date(date);
     let day = d.getDate()
@@ -17,26 +19,22 @@ export const idObjToKeyInArray = (array) => {
     return newArray; 
 }
 
-export const toggleBtnLoader = (btnElement, classNameLoader = false) => {
+export const generateUniqueId = () => {
+    return uuidv1()
+}
 
-    if(!classNameLoader) {
-        classNameLoader = 'loader-gif'
+export const formatComment = (body, author, parentId) => {
+    const comment = {
+        id: uuidv1(),
+        author,
+        body,
+        parentId,
+        timestamp: Date.now(),
+        voteScore: 0,
+        deleted: false,
+        parentDeleted: false
     }
-
-    const loaderGif = document.querySelector("." + classNameLoader)
-    if(loaderGif) {
-        if (btnElement.style.display === "none") {
-            loaderGif.style.display = "none";
-            btnElement.style.display = "inline-block";
-        } else if (btnElement.style.display === "") { 
-            btnElement.style.display = "none";
-            loaderGif.style.display = "inline-block";
-        } else if (btnElement.style.display === "inline-block") { 
-            btnElement.style.display = "none";
-            loaderGif.style.display = "inline-block";
-        }
-    }
-
+    return comment
 }
 
 export const autoAdjustHeightView = () => {
