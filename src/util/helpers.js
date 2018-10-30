@@ -30,7 +30,7 @@ export const formatComment = (body, author, parentId) => {
         body,
         parentId,
         timestamp: Date.now(),
-        voteScore: 0,
+        voteScore: 1,
         deleted: false,
         parentDeleted: false
     }

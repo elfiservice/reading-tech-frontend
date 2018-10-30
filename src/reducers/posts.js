@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS } from '../actions/posts'
+import { RECEIVE_POSTS, ADD_COMMENT_COUNT } from '../actions/posts'
 
 export default function posts (state = {}, action) {
     switch(action.type) {
@@ -6,6 +6,14 @@ export default function posts (state = {}, action) {
             return {
                 ...state,
                 ...action.posts
+            }
+        case ADD_COMMENT_COUNT :
+            return {
+                ...state,
+                [action.postId]: {
+                    ...state[action.postId],
+                    commentCount: state[action.postId].commentCount + 1
+                }
             }
         default:
             return state

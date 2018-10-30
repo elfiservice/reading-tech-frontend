@@ -1,6 +1,8 @@
 import ApiAxios from '../util/apiconfig'
 import { idObjToKeyInArray } from '../util/helpers'
 
+import { addCommentCount } from './posts'
+
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENTS = 'ADD_COMMENTS'
 export const REMOVE_COMMENTS = 'REMOVE_COMMENTS'
@@ -19,6 +21,7 @@ export function handleReceiveComments(postId) {
 export function handleAddComment(comment) {
     return (dispatch) => {
         dispatch(addComment(comment))
+        dispatch(addCommentCount(comment.parentId))
         return ApiAxios.post(`/comments`, comment)
              .catch((err) => {
                 dispatch(removeComment(comment.id))
