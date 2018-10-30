@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
-export const VOTE_UPDATE = 'VOTE_UPDATE'
+export const VOTE_UPDATE_POST = 'VOTE_UPDATE_POST'
 
 export function receivePosts(posts) {
     return {
@@ -33,7 +33,7 @@ export function handlerVoteUpdate(postId, option) {
 
 function voteUpdate(postId, option) {
     return {
-        type: VOTE_UPDATE,
+        type: VOTE_UPDATE_POST,
         postId,
         option
     }
