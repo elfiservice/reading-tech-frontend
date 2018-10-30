@@ -7,11 +7,21 @@ import { handleReceiveComments } from '../actions/comments'
 import { formatDate } from '../util/helpers'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
+import VoteScore from './VoteScore'
 
 class Post extends Component {
     componentDidMount() {
         this.props.dispatch(handleReceiveComments(this.props.id))
     }
+
+    scoreUpdateClick = (option) => {
+        if(option === 'upVote') {
+             console.log('soma 1 para post ' + this.props.id);
+        } else if(option === 'downVote') {
+            console.log('sub 1 para post ' + this.props.id);
+        }
+    }
+
     render() {
         const { id, title, author, body, commentCount, timestamp, voteScore } = this.props.post
         return (
@@ -28,7 +38,10 @@ class Post extends Component {
                 </div>
                 <div className="interactions inverse-color content">
                     <div className="votes">
-                        {voteScore} Votes
+                        <VoteScore 
+                            voteScore={voteScore}
+                            scoreUpdate={this.scoreUpdateClick}
+                        />
                     </div>
                     <div className="comments-count">
                         <div>{commentCount} comments</div>

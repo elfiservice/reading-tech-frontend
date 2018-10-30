@@ -2,9 +2,19 @@ import React from 'react'
 import './Comment.css'
 
 import { formatDate } from '../util/helpers'
+import VoteScore from './VoteScore'
 
 const Comment = (props) => {
-    const { author, body, timestamp, voteScore } = props.comment
+    const { id, author, body, timestamp, voteScore } = props.comment
+    const scoreUpdateClick = (option) => {
+       if(option === 'upVote') {
+            console.log('soma 1 para comment ' + id);
+       } else if(option === 'downVote') {
+           console.log('sub 1 para comment ' + id);
+       }
+        
+    }
+
     return (
         <div className="comment"> 
             <div className="apresetation">
@@ -13,13 +23,10 @@ const Comment = (props) => {
             <div className="body">
                 {body}
             </div>
-            <div className="vote">
-                <div className="score">
-                    {voteScore}
-                </div>
-                <div className="up"><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
-                <div className="down"><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></div>
-            </div>
+            <VoteScore 
+                voteScore={voteScore}
+                scoreUpdate={scoreUpdateClick}
+            />
         </div>
     )
 }

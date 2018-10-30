@@ -12,7 +12,6 @@ export function handleReceiveComments(postId) {
         return ApiAxios.get(`/posts/${postId}/comments`)
              .then(({ data }) => {
                 const comments = idObjToKeyInArray(data)
-                console.log(comments);
                 dispatch(receiveComments(comments))
              });
      }
