@@ -1,7 +1,7 @@
 import { 
     RECEIVE_COMMENTS,
     ADD_COMMENTS,
-    REMOVE_COMMENTS
+    VOTE_UPDATE_COMMENT
 } from '../actions/comments'
 
 export default function comments (state = {}, action) {
@@ -15,6 +15,16 @@ export default function comments (state = {}, action) {
             return {
                 ...state,
                 [action.comment.id]: action.comment
+            }
+        case VOTE_UPDATE_COMMENT :
+            return {
+                ...state,
+                [action.commentId]: {
+                    ...state[action.commentId],
+                    voteScore: action.option === 'upVote' 
+                        ? state[action.commentId].voteScore + 1 
+                        : state[action.commentId].voteScore - 1
+                }
             }
         default:
             return state

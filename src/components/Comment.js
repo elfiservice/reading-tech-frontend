@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './Comment.css'
+
+import { handlerVoteUpdate } from '../actions/comments'
 
 import { formatDate } from '../util/helpers'
 import VoteScore from './VoteScore'
@@ -7,12 +10,7 @@ import VoteScore from './VoteScore'
 const Comment = (props) => {
     const { id, author, body, timestamp, voteScore } = props.comment
     const scoreUpdateClick = (option) => {
-       if(option === 'upVote') {
-            console.log('soma 1 para comment ' + id);
-       } else if(option === 'downVote') {
-           console.log('sub 1 para comment ' + id);
-       }
-        
+        props.dispatch(handlerVoteUpdate(id, option))       
     }
 
     return (
@@ -31,4 +29,4 @@ const Comment = (props) => {
     )
 }
 
-export default Comment
+export default connect()(Comment)

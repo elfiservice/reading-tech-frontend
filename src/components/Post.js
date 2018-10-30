@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Post.css'
 
-import { handleReceiveComments } from '../actions/comments'
 import { handlerVoteUpdate } from '../actions/posts'
 
 import { formatDate } from '../util/helpers'
-import CommentList from './CommentList'
-import AddComment from './AddComment'
+import Comments from './Comments'
 import VoteScore from './VoteScore'
 
 class Post extends Component {
-    componentDidMount() {
-        this.props.dispatch(handleReceiveComments(this.props.id))
-    }
-
     scoreUpdateClick = (option) => {
         this.props.dispatch(handlerVoteUpdate(this.props.id, option))
     }
@@ -44,23 +38,16 @@ class Post extends Component {
                         <div>{commentCount} comments</div>
                     </div>
                 </div>
-                <div className="comments-container">
-                    <AddComment postId={id} />
-                    <CommentList comments={this.props.comments} />
-                </div>
-
+                <Comments postId={id} />
             </article>
         )
     }
 }
 
-function mapStateToProps({ posts, comments }, { id }) {
+function mapStateToProps({ posts }, { id }) {
     const post = posts[id]
-
     return {
-        post,
-        comments: Object.values(comments)
-            .filter( comment => comment.parentId === id )
+        post
     }
 }
 

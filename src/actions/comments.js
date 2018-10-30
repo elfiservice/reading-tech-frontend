@@ -6,6 +6,7 @@ import { addCommentCount } from './posts'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENTS = 'ADD_COMMENTS'
 export const REMOVE_COMMENTS = 'REMOVE_COMMENTS'
+export const VOTE_UPDATE_COMMENT = 'VOTE_UPDATE_COMMENT'
 
 export function handleReceiveComments(postId) {
     return (dispatch) => {
@@ -27,6 +28,26 @@ export function handleAddComment(comment) {
                 alert('We found a error while try to save your comment, please try again.')
              });
      }
+}
+
+export function handlerVoteUpdate(commentId, option) {
+    return dispatch => {
+        dispatch(voteUpdateComment(commentId, option))
+        return ApiAxios.post(`/comments/${commentId}`, { option })
+            .catch((err) => {
+                const optionToggled = option === 'upVote' ? 'downVote' : 'upVote'
+                dispatch(voteUpdateComment(commentId, optionToggled))
+                alert('We found a error while try to save your Vote, please try again.')
+            });
+    }
+}
+
+function voteUpdateComment(commentId, option) {
+    return {
+        type: VOTE_UPDATE_COMMENT,
+        commentId,
+        option
+    }
 }
 
 function receiveComments(comments) {
