@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './Post.css'
 
 import { handleReceiveComments } from '../actions/comments'
+import { handlerVoteUpdate } from '../actions/posts'
 
 import { formatDate } from '../util/helpers'
 import CommentList from './CommentList'
@@ -15,11 +16,7 @@ class Post extends Component {
     }
 
     scoreUpdateClick = (option) => {
-        if(option === 'upVote') {
-             console.log('soma 1 para post ' + this.props.id);
-        } else if(option === 'downVote') {
-            console.log('sub 1 para post ' + this.props.id);
-        }
+        this.props.dispatch(handlerVoteUpdate(this.props.id, option))
     }
 
     render() {
