@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { Link } from 'react-router-dom'
+
 const Categories = (props) => {
     return (
         <div className="categories"> 
@@ -8,7 +10,7 @@ const Categories = (props) => {
             <ul className="cat-list">
                 {props.categories.map(cat => (
                     <li key={cat.name}>
-                        {cat.name}
+                        <Link to={`/category/${cat.name}`}>{cat.name}</Link>
                     </li>
                 ))}
             </ul>   

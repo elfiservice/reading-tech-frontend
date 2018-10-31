@@ -16,10 +16,11 @@ class Posts extends Component {
     }
 
     render() {
+        const { category } = this.props
         return (
             <div className="posts">
                 <div className="header">
-                    <h2>All Posts</h2>
+                    <h2>All Posts</h2> { category && <span>to <b>{category}</b></span> }
                     <div className="order-control">
                         order by 
                         <button 
@@ -29,7 +30,7 @@ class Posts extends Component {
                     </div>
                 </div>
                 
-                <PostList orderBy={this.state.orderBy} />
+                <PostList orderBy={this.state.orderBy} category={category} />
             </div>
         )
     }
