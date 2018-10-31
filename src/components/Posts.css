@@ -1,0 +1,9 @@
+.posts .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-control .btn {
+    margin-left: 10px;
+}

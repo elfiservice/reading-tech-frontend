@@ -11,10 +11,16 @@ const PostList = (props) => {
     )
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts }, { orderBy }) {
     return {
         postsIds: Object.keys(posts)
-            .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
+            .sort((a,b) => {
+                if(orderBy === 'date') {
+                    return posts[b].timestamp - posts[a].timestamp
+                } else {
+                    return posts[b].voteScore - posts[a].voteScore
+                }
+            })
     }
 }
 

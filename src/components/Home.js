@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Categories from './Categories'
-import PostList from './PostList'
+import Posts from './Posts'
 
 const Home = (props) => {
     return (
@@ -12,8 +12,7 @@ const Home = (props) => {
                         <Categories />
                     </div>
                     <div className="col-md-8">
-                        <h2>All Posts</h2>
-                        <PostList />
+                        <Posts />
                     </div>
                 </div>
             </div>
