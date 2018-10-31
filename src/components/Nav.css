@@ -1,0 +1,18 @@
+/* .navbar-header {
+    display: flex;
+} */
+
+.navbar  .fa {
+    margin-right: 5px;
+}
+
+.navbar-header  .new-post {
+    float: right;
+    margin: 8px 0;
+}
+
+@media (min-width: 768px) {
+    .navbar-header {
+        float: none;
+    }
+}

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 import { handleInitialData } from '../actions/share'
 
 import Nav from './Nav'
-import Home from './Home'
+import Routes from '../routes'
 
 class App extends Component {
   componentDidMount() {
@@ -11,14 +13,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <Nav />
-        {
-          this.props.loading === true 
-            ? null
-            : <Home /> 
-        }
-      </div>
+      <Router>
+        <div className="App">
+          <Nav />
+          {
+            this.props.loading === true 
+              ? null
+              : <Routes /> 
+          }
+        </div>
+      </Router>
     );
   }
 }
