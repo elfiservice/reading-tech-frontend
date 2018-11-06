@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import './Post.css'
 
 import { handlerVoteUpdate } from '../actions/posts'
@@ -13,12 +14,20 @@ class Post extends Component {
         this.props.dispatch(handlerVoteUpdate(this.props.id, option))
     }
 
+    checkOriginOfPost() {
+        if(!this.props.post) {
+            return <div className="container">Loading...</div>
+        } else {
+            return this.props.post          
+        }
+    }
+
     render() {
-        const { id, title, author, body, commentCount, timestamp, voteScore } = this.props.post
+        const { id, title, author, body, commentCount, timestamp, voteScore } = this.checkOriginOfPost()
         return (
             <article className="post">
                 <header className="inverse-color content">
-                    <h3>{title}</h3>
+                    <h3><Link to={`/post/${id}`}>{title}</Link></h3>
                     <div className="author">
                         by {author} 
                         <span className="date"><i className="fa fa-calendar" aria-hidden="true"></i>{formatDate(timestamp)}</span>
@@ -46,9 +55,12 @@ class Post extends Component {
 
 function mapStateToProps({ posts }, { id }) {
     const post = posts[id]
-    return {
-        post
+    if(posts) {
+        return {
+            post
+        }
     }
+    return false
 }
 
 export default connect(mapStateToProps)(Post)
