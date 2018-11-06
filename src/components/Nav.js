@@ -4,21 +4,20 @@ import { Link } from 'react-router-dom'
 
 const Nav = (props) => {
     return (
-        <nav className="navbar navbar-default">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                    <Link className="navbar-brand" to="/">
-                        Tech Read
-                    </Link>
+        <header>
+            <nav className="navbar navbar-dark fixed-top bg-dark">
 
-                        <Link to="/new-post" className="btn btn-success new-post">
-                            <i className="fa fa-plus" aria-hidden="true"></i>
-                            New Post
+                        <Link className="navbar-brand" to="/">
+                            Tech Read
                         </Link>
-         
-                </div>
-            </div>
-        </nav>
+
+                            <Link to="/new-post" className="btn btn-success new-post">
+                                <i className="fa fa-plus" aria-hidden="true"></i>
+                                New Post
+                            </Link>
+
+            </nav>
+        </header>
     )
 }
 
