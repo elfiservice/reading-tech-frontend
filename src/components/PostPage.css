@@ -1,3 +1,11 @@
 .post-page {
     margin-top: 5em;
 }
+
+.post-page .header {
+    display: flex;
+}
+
+.post-page .edit-control {
+    margin-left: 10px;
+}
