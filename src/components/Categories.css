@@ -1,0 +1,25 @@
+.categories ul {
+    padding-inline-start: 0
+}
+
+.categories li {
+    margin-bottom: -1px;
+}
+
+.categories li, .categories li a {
+    border: 1px dotted #343a40;
+    list-style: none;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.categories li a {
+    padding: 10px 20px;
+    border: none;
+}
+
+.categories li a:hover {
+    background-color: #343a40;
+    color: #fff;
+}

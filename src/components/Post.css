@@ -1,11 +1,11 @@
 .inverse-color  {
     color: #ffffff;
-    background-color: #000;
+    background-color: #343a40;
 }
 
 .post {
     margin-bottom: 20px;
-    border: 1px dotted #000;
+    border: 1px dotted #343a40;
     box-shadow: 1px 1px 1px #ddd;
 }
 
