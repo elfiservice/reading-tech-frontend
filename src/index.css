@@ -1,0 +1,18 @@
+input, textarea {
+    width: 95%;
+    padding: 10px 2%;
+    font-size: 18px;
+    margin: 10px auto;
+    
+  }
+
+input, select {
+    display: block;
+    border: none;
+    border-bottom: 1px solid #bfbfbf;
+  }
+  
+  textarea {
+    border: 1px solid #bfbfbf;
+    margin-top: 30px;
+  }

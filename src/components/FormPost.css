@@ -1,0 +1,6 @@
+.form-post input, 
+.form-post textarea, 
+.form-post select {
+    margin-bottom: 30px;
+    background-color: #f7f7f7 !important;
+}

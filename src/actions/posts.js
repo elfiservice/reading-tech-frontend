@@ -1,5 +1,4 @@
 import ApiAxios from '../util/apiconfig'
-import Axios from 'axios';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
@@ -19,7 +18,7 @@ export function addCommentCount(postId) {
     }
 }
 
-export function handlerVoteUpdate(postId, option) {
+export function handlerVoteUpdate(postId, option) { //criar 1 unico handlerVoteUpdate no share.js para posts e comments actions usarem
     return dispatch => {
         dispatch(voteUpdate(postId, option))
         return ApiAxios.post(`/posts/${postId}`, { option })
