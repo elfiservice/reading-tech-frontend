@@ -24,6 +24,15 @@ class FormPost extends Component {
         this.handlerSubmit = this.handlerSubmit.bind(this)
     }
 
+    componentDidMount() {
+        if(this.props.post) {
+            const { title, body, author, category } = this.props.post
+            this.setState({
+                title, body, author, category
+            })
+        }
+    }
+
     handleInputChange(event) {
         const { name, value } = event.target;
         this.setState({ [name]: value });
@@ -35,21 +44,45 @@ class FormPost extends Component {
 
     handlerSubmit(e) {
         e.preventDefault()
+        if(this.props.post) {
+            this.updatePost()
+        } else {
+            const { title, body, author, category } = this.state
+            const post = {
+                id: generateUniqueId(),
+                title,
+                body,
+                author,
+                category,
+                voteScore: 0,
+                deleted: false,
+                commentCount: 0,
+                timestamp: Date.now()
+            }
+
+            this.props.dispatch(handlerAddNewPost(post))
+        }
+
+    }
+
+    updatePost() {
+        const { id, voteScore, deleted, commentCount } = this.props.post
         const { title, body, author, category } = this.state
         const post = {
-            id: generateUniqueId(),
+            id,
             title,
             body,
             author,
             category,
-            voteScore: 0,
-            deleted: false,
-            commentCount: 0,
+            voteScore,
+            deleted,
+            commentCount,
             timestamp: Date.now()
         }
-        console.log('save data post ', post);
-        //criar Action para salvar no DB
-       this.props.dispatch(handlerAddNewPost(post))
+
+
+            console.log('update post ', post);
+
     }
 
     render() {
