@@ -8,7 +8,7 @@ import TextArea from './TypeTextarea'
 
 import { generateUniqueId } from '../util/helpers'
 
-import { handlerAddNewPost } from '../actions/posts'
+import { handlerAddNewPost, handlerUpdatePost } from '../actions/posts'
 
 class FormPost extends Component {
     constructor(props) {
@@ -90,9 +90,10 @@ class FormPost extends Component {
             timestamp: Date.now()
         }
 
-//todo: provider a Action PUT /posts/:id	https://github.com/udacity/reactnd-project-readable-starter/blob/master/api-server/README.md
-            console.log('update post ', post);
-
+        this.props.dispatch(handlerUpdatePost(post))
+        this.setState({ 
+            toHome: true
+            })
     }
 
     render() {

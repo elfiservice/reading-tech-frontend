@@ -8,6 +8,7 @@ const PostPage = (props) => {
     const { id } = props.match.params
     return (
         <div className="post-page container">
+            <Link to="/">Back to Posts</Link>
             <header className="header">
                 <h2>Post Details</h2>
                 <div className="edit-control">

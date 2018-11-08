@@ -4,6 +4,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
 export const VOTE_UPDATE_POST = 'VOTE_UPDATE_POST'
 export const ADD_NEW_POST = 'ADD_NEW_POST'
+export const UPDATE_POST = 'UPDATE_POST'
 
 export function receivePosts(posts) {
     return {
@@ -42,6 +43,17 @@ export function handlerAddNewPost(post) {
     }
 }
 
+export function handlerUpdatePost(post) {
+    return dispatch => {
+        return ApiAxios.put(`/posts/${post.id}`, post)
+            .then(res => dispatch(updatePost(post)))
+            .catch((err) => {
+                console.log('Error update Posts Actions: ', err);
+                alert('We found a error while try to Update your Post, please try again.')
+            });
+    }
+}
+
 function voteUpdate(postId, option) {
     return {
         type: VOTE_UPDATE_POST,
@@ -53,6 +65,13 @@ function voteUpdate(postId, option) {
 function addNewPost(post) {
     return {
         type: ADD_NEW_POST,
+        post
+    }
+}
+
+function updatePost(post) {
+    return {
+        type: UPDATE_POST,
         post
     }
 }
