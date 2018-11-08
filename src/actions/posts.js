@@ -3,6 +3,7 @@ import ApiAxios from '../util/apiconfig'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
 export const VOTE_UPDATE_POST = 'VOTE_UPDATE_POST'
+export const ADD_NEW_POST = 'ADD_NEW_POST'
 
 export function receivePosts(posts) {
     return {
@@ -30,10 +31,28 @@ export function handlerVoteUpdate(postId, option) { //criar 1 unico handlerVoteU
     }
 }
 
+export function handlerAddNewPost(post) {
+    return dispatch => {
+        return ApiAxios.post(`/posts`, post)
+            .then(res => dispatch(addNewPost(post)))
+            .catch((err) => {
+                console.log('Error Posts Actions: ', err);
+                alert('We found a error while try to save your New Post, please try again.')
+            });
+    }
+}
+
 function voteUpdate(postId, option) {
     return {
         type: VOTE_UPDATE_POST,
         postId,
         option
+    }
+}
+
+function addNewPost(post) {
+    return {
+        type: ADD_NEW_POST,
+        post
     }
 }

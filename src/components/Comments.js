@@ -11,15 +11,7 @@ class Comments extends Component {
         this.props.dispatch(handleReceiveComments(this.props.postId))
     }
 
-    checkOriginPost() {
-        if(this.props.comments.length <= 0) {
-            this.componentDidMount()
-            return <div className="container">Loading...</div>
-        } 
-    }
-
     render() {
-        this.checkOriginPost()
         const { postId, comments } = this.props
         return (
             <div className="comments-container">
@@ -32,13 +24,10 @@ class Comments extends Component {
 }
 
 function mapStateToProps({ comments }, { postId }) {
-    if(comments) {
-        return {
-            comments: Object.values(comments)
-                .filter( comment => comment.parentId === postId )
-        }
+    return {
+        comments: Object.values(comments)
+            .filter( comment => comment.parentId === postId )
     }
-    return false
 }
 
 export default connect(mapStateToProps)(Comments)

@@ -5,6 +5,10 @@ import './FormPost.css'
 import InputText from '../components/TypeText'
 import TextArea from './TypeTextarea'
 
+import { generateUniqueId } from '../util/helpers'
+
+import { handlerAddNewPost } from '../actions/posts'
+
 class FormPost extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +16,7 @@ class FormPost extends Component {
             title: '',
             body: '',
             author: '',
-            cat: ''
+            category: ''
 
         }
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -26,13 +30,26 @@ class FormPost extends Component {
     }
 
     onChangeCat(event) {
-        this.setState({cat: event.target.value});
+        this.setState({category: event.target.value});
     }
 
     handlerSubmit(e) {
         e.preventDefault()
-        console.log('save data post');
-        
+        const { title, body, author, category } = this.state
+        const post = {
+            id: generateUniqueId(),
+            title,
+            body,
+            author,
+            category,
+            voteScore: 0,
+            deleted: false,
+            commentCount: 0,
+            timestamp: Date.now()
+        }
+        console.log('save data post ', post);
+        //criar Action para salvar no DB
+       this.props.dispatch(handlerAddNewPost(post))
     }
 
     render() {
@@ -68,7 +85,7 @@ class FormPost extends Component {
                     />
                     <select 
                         className="cat-select" 
-                        defaultValue={this.state.cat} 
+                        defaultValue={this.state.category} 
                         onChange={this.onChangeCat}
                         required
                     >

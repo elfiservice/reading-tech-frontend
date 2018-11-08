@@ -14,16 +14,11 @@ class Post extends Component {
         this.props.dispatch(handlerVoteUpdate(this.props.id, option))
     }
 
-    checkOriginOfPost() {
+    render() {
         if(!this.props.post) {
             return <div className="container">Loading...</div>
-        } else {
-            return this.props.post          
         }
-    }
-
-    render() {
-        const { id, title, author, body, commentCount, timestamp, voteScore } = this.checkOriginOfPost()
+        const { id, title, author, body, commentCount, timestamp, voteScore } = this.props.post
         return (
             <article className="post">
                 <header className="inverse-color content">
@@ -55,12 +50,9 @@ class Post extends Component {
 
 function mapStateToProps({ posts }, { id }) {
     const post = posts[id]
-    if(posts) {
-        return {
-            post
-        }
+    return {
+        post
     }
-    return false
 }
 
 export default connect(mapStateToProps)(Post)
