@@ -53,6 +53,8 @@ class FormPost extends Component {
     }
 
     render() {
+        console.log(this.props.post);
+        
         return (
             <div className="form-post">
                 <form className="form" onSubmit={this.handlerSubmit}>

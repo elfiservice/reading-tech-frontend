@@ -5,6 +5,7 @@ import Home from '../components/Home'
 import NewPost from '../components/NewPost'
 import Category from '../components/Category'
 import PostPage from '../components/PostPage'
+import PostEdit from '../components/PostEdit'
 
 const Routes = (props) => {
     return (
@@ -13,6 +14,7 @@ const Routes = (props) => {
             <Route path='/new-post' exact component={NewPost} />
             <Route path='/category/:cat_name' exact component={Category} />
             <Route path='/post/:id' exact component={PostPage} />
+            <Route path='/edit-post/:id' exact component={PostEdit} />
         </Fragment>
     )
 }
