@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import './FormPost.css'
 
 import InputText from '../components/TypeText'
@@ -16,12 +17,14 @@ class FormPost extends Component {
             title: '',
             body: '',
             author: '',
-            category: ''
+            category: '',
+            toHome: false
 
         }
         this.handleInputChange = this.handleInputChange.bind(this)
         this.onChangeCat = this.onChangeCat.bind(this)
         this.handlerSubmit = this.handlerSubmit.bind(this)
+        this.updatePost = this.updatePost.bind(this)
     }
 
     componentDidMount() {
@@ -61,6 +64,13 @@ class FormPost extends Component {
             }
 
             this.props.dispatch(handlerAddNewPost(post))
+            this.setState({ 
+                title: '',
+                body: '',
+                author: '',
+                category: '',
+                toHome: true
+             })
         }
 
     }
@@ -80,13 +90,15 @@ class FormPost extends Component {
             timestamp: Date.now()
         }
 
-
+//todo: provider a Action PUT /posts/:id	https://github.com/udacity/reactnd-project-readable-starter/blob/master/api-server/README.md
             console.log('update post ', post);
 
     }
 
     render() {
-        console.log(this.props.post);
+        if(this.state.toHome) {
+            return <Redirect to="/" />
+        }
         
         return (
             <div className="form-post">
