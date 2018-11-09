@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import Post from './Post'
 
 const PostList = (props) => {
+    if(props.postsIds.length <= 0) {
+        return   <div className="post-list alert alert-info">No posts to show yet, be the firt one!</div>
+    }
     return (
         <div className="post-list">
             {props.postsIds.map( id => <Post key={id} id={id} /> )}
