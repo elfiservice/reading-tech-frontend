@@ -1,7 +1,8 @@
 import { 
     RECEIVE_COMMENTS,
     ADD_COMMENTS,
-    VOTE_UPDATE_COMMENT
+    VOTE_UPDATE_COMMENT,
+    DELETE_PARENT_POST
 } from '../actions/comments'
 
 export default function comments (state = {}, action) {
@@ -26,6 +27,17 @@ export default function comments (state = {}, action) {
                         : state[action.commentId].voteScore - 1
                 }
             }
+        case DELETE_PARENT_POST :
+            let newState = {}
+            for (const key in state) {
+                if(state[key].parentId === action.postId) {
+                    newState[key] = {
+                        ...state[key],
+                        parentDeleted: true
+                    }
+                }
+             }
+            return newState
         default:
             return state
     }

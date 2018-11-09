@@ -5,6 +5,7 @@ export const ADD_COMMENT_COUNT = 'ADD_COMMENT_COUNT'
 export const VOTE_UPDATE_POST = 'VOTE_UPDATE_POST'
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const UPDATE_POST = 'UPDATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export function receivePosts(posts) {
     return {
@@ -51,6 +52,13 @@ export function handlerUpdatePost(post) {
                 console.log('Error update Posts Actions: ', err);
                 alert('We found a error while try to Update your Post, please try again.')
             });
+    }
+}
+
+export function deletePost(postId) {
+    return {
+        type: DELETE_POST,
+        postId
     }
 }
 

@@ -13,6 +13,9 @@ const PostList = (props) => {
 }
 
 function mapStateToProps({ posts }, { orderBy, category }) {
+    let postsNotDeleted = Object.values(posts).filter( post => post.deleted === false )
+    posts = _.mapValues(_.keyBy(postsNotDeleted, 'id'))
+
     if(category) {
         let postsByCategory = Object.values(posts).filter( post => post.category === category )
         posts = _.mapValues(_.keyBy(postsByCategory, 'id'))

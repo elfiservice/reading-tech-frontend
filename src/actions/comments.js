@@ -7,6 +7,7 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const ADD_COMMENTS = 'ADD_COMMENTS'
 export const REMOVE_COMMENTS = 'REMOVE_COMMENTS'
 export const VOTE_UPDATE_COMMENT = 'VOTE_UPDATE_COMMENT'
+export const DELETE_PARENT_POST = 'DELETE_PARENT_POST'
 
 export function handleReceiveComments(postId) {
     return (dispatch) => {
@@ -42,6 +43,13 @@ export function handlerVoteUpdate(commentId, option) {
     }
 }
 
+export function deleteParentPostComments(postId) {
+    return {
+        type: DELETE_PARENT_POST,
+        postId
+    }
+}
+
 function voteUpdateComment(commentId, option) {
     return {
         type: VOTE_UPDATE_COMMENT,
@@ -70,5 +78,7 @@ function removeComment(commentId) {
         commentId
     }
 }
+
+
 
 

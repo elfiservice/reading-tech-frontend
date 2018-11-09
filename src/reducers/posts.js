@@ -3,7 +3,8 @@ import {
     ADD_COMMENT_COUNT, 
     VOTE_UPDATE_POST,
     ADD_NEW_POST,
-    UPDATE_POST
+    UPDATE_POST,
+    DELETE_POST
 } from '../actions/posts'
 
 export default function posts (state = {}, action) {
@@ -40,6 +41,14 @@ export default function posts (state = {}, action) {
             return {
                 ...state,
                 [action.post.id]: action.post
+            }
+        case DELETE_POST :
+            return {
+                ...state,
+                [action.postId]: {
+                    ...state[action.postId],
+                    deleted: true
+                }
             }
         default:
             return state

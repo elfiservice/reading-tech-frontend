@@ -1,8 +1,8 @@
 import ApiAxios from '../util/apiconfig'
 
 import { receiveCategories } from './categories'
-// import { receiveComments } from './comments'
-import { receivePosts } from './posts'
+import { deleteParentPostComments } from './comments'
+import { receivePosts, deletePost } from './posts'
 
 function getCategories() {
     return ApiAxios.get('/categories')
@@ -22,7 +22,21 @@ export function handleInitialData() {
                 dispatch(receivePosts(idObjToKeyInArray(posts)))
             });
     }
-} 
+}
+
+export function handlerDeletePost(postId) {
+    return dispatch => {
+        return ApiAxios.delete(`/posts/${postId}`)
+            .then(res => {
+                dispatch(deletePost(postId))
+                dispatch(deleteParentPostComments(postId))
+            })
+            .catch((err) => {
+                console.log('Error Delete Post Actions: ', err);
+                alert('We found a error while try to Delete your Post, please try again.')
+            });
+    }
+}
 
 
 function idObjToKeyInArray(array) {

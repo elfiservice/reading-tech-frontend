@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link, Redirect } from 'react-router-dom'
 import './PostPage.css'
 
 import Post from '../components/Post'
 import Modal from './Modal'
+import { handlerDeletePost } from '../actions/share'
 
 class PostPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            hideModal: true
+            hideModal: true,
+            goHome: false
         }
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
@@ -25,11 +28,16 @@ class PostPage extends Component {
     }
 
     deletePost() {
-        console.log('deleting post!!');
-        
+        const { id } = this.props.match.params
+        this.props.dispatch(handlerDeletePost(id))
+        this.hideModal()
+        this.setState({ goHome: true })
     }
 
     render() {
+        if(this.state.goHome) {
+            return <Redirect to="/" />
+        }
         const { id } = this.props.match.params
         return (
             <div className="post-page container">
@@ -66,4 +74,4 @@ class PostPage extends Component {
     }
 }
 
-export default PostPage
+export default connect()(PostPage)
