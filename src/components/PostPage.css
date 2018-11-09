@@ -9,3 +9,20 @@
 .post-page .edit-control {
     margin-left: 10px;
 }
+
+.post-page .delete-question {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.delete-question .delete-bts {
+    margin-top: 20px;
+}
+
+.post-page .remove-control {
+    margin-left: 10px;
+}
+
+.delete-question .btn-default {
+    margin-left: 10px;
+}

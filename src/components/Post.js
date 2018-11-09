@@ -18,7 +18,7 @@ class Post extends Component {
         if(!this.props.post) {
             return <div className="container">Loading...</div>
         }
-        const { id, title, author, body, commentCount, timestamp, voteScore } = this.props.post
+        const { id, title, author, body, category, commentCount, timestamp, voteScore } = this.props.post
         return (
             <article className="post">
                 <header className="inverse-color content">
@@ -26,7 +26,10 @@ class Post extends Component {
                     <div className="author">
                         by {author} 
                         <span className="date"><i className="fa fa-calendar" aria-hidden="true"></i>{formatDate(timestamp)}</span>
-                    </div> 
+                        <span className="category">
+                            <i><b>{category}</b></i> category
+                        </span>
+                    </div>
                 </header>
                 <div className="body content">
                     {body}

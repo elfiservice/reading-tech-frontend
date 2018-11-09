@@ -2,7 +2,7 @@ import React from 'react'
 
 /*
     props requireds
-    @param name
+    @prop name
     @placeholder
     @value
     @type (default is 'text')

@@ -1,0 +1,41 @@
+.modal_window {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 101;
+}
+
+.modal_content {
+    display: block;
+    width: 540px;
+    max-width: 90%;
+    margin: 20% auto 0 auto;
+    background: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: relative;
+    padding: 5px 20px 10px 20px;
+    min-height: 200px;
+}
+
+.show {
+    display: block !important;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 101;
+}
+
