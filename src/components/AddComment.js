@@ -49,7 +49,9 @@ class AddComment extends Component {
                         onChange={this.handleInputChange}
                         required={true}
                     />
-                    <button className="btn btn-success">Comment</button>
+                    <button className="btn btn-success">
+                        <i className="fa fa-comment" aria-hidden="true"></i>
+                    </button>
                 </form>
             </div>
         )
