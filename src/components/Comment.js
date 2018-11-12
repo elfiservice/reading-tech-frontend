@@ -2,22 +2,26 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Comment.css'
 
-import { handlerVoteUpdate, handlerUpdateComment } from '../actions/comments'
+import { handlerVoteUpdate, handlerUpdateComment, handleRemoveComment } from '../actions/comments'
 
 import { formatDate } from '../util/helpers'
 import VoteScore from './VoteScore'
+import Modal from './Modal'
 
 class Comment extends Component {
     constructor(props) {
         super(props)
         this.state = {
             editEnable: false,
-            body: ''
+            body: '',
+            hideModal: true
         }
         this.scoreUpdateClick = this.scoreUpdateClick.bind(this);
         this.toggleEditBtn = this.toggleEditBtn.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.saveEditedComment = this.saveEditedComment.bind(this);
+        this.toggleDeleteBtnModal = this.toggleDeleteBtnModal.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
     }
 
     componentDidMount() {
@@ -69,8 +73,20 @@ class Comment extends Component {
         this.setState({ editEnable: false })      
     }
 
+    toggleDeleteBtnModal() {
+        this.setState(( currentState ) => {
+            const newState = (currentState.hideModal ? false : true);
+            return { hideModal: newState }
+        })
+    }
+
+    deleteComment(commentId) {
+        this.props.dispatch(handleRemoveComment(commentId));
+        this.toggleDeleteBtnModal();
+    }
+
     render() {
-        const { author, body, timestamp, voteScore } = this.props.comment
+        const { id, author, body, timestamp, voteScore } = this.props.comment
         return (
             <div className="comment"> 
                 <div className="apresetation">
@@ -88,11 +104,22 @@ class Comment extends Component {
                         <button className="edit-comment btn" onClick={this.toggleEditBtn} >
                             <i className="fa fa-pencil" aria-hidden="true"></i>
                         </button>
-                        <button className="delete-comment btn" >
+                        <button className="delete-comment btn" onClick={this.toggleDeleteBtnModal} >
                             <i className="fa fa-trash-o" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
+                <Modal hide={this.state.hideModal} classSelector={`comment-delete-modal-${id}`} >
+                    <div className="content-modal">
+                        <div className="question">
+                            Do you really want to delete this comment?
+                        </div>
+                        <div className="buttons">
+                            <button className="btn btn-danger" onClick={() => this.deleteComment(id)} >Delete</button>
+                            <button className="btn btn-cancel" onClick={this.toggleDeleteBtnModal} >Cancel</button>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 import { handleReceiveComments } from '../actions/comments'
 
@@ -26,7 +27,7 @@ class Comments extends Component {
 function mapStateToProps({ comments }, { postId }) {
     return {
         comments: Object.values(comments)
-            .filter( comment => comment.parentId === postId )
+            .filter( comment => comment.parentId === postId && comment.deleted === false )
     }
 }
 
