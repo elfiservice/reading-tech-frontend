@@ -33,3 +33,12 @@
 .comment .edit-comment-form {
     display: flex;
 }
+
+.comment .content-modal {
+    text-align: center;
+    padding: 40px 0 10px 0;
+}
+
+.comment .content-modal .buttons {
+    margin-top: 40px;
+}
