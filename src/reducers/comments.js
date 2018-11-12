@@ -2,7 +2,8 @@ import {
     RECEIVE_COMMENTS,
     ADD_COMMENTS,
     VOTE_UPDATE_COMMENT,
-    DELETE_PARENT_POST
+    DELETE_PARENT_POST,
+    UPDATE_COMMENT
 } from '../actions/comments'
 
 export default function comments (state = {}, action) {
@@ -38,6 +39,15 @@ export default function comments (state = {}, action) {
                 }
              }
             return newState
+        case UPDATE_COMMENT :
+            return {
+                ...state,
+                [action.comment.id]: {
+                    ...state[action.comment.id],
+                    body: action.comment.body,
+                    timestamp: action.comment.timestamp 
+                }
+            }
         default:
             return state
     }

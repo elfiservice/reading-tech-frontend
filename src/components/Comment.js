@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Comment.css'
 
-import { handlerVoteUpdate } from '../actions/comments'
+import { handlerVoteUpdate, handlerUpdateComment } from '../actions/comments'
 
 import { formatDate } from '../util/helpers'
 import VoteScore from './VoteScore'
@@ -60,13 +60,17 @@ class Comment extends Component {
     saveEditedComment() {
         const { id } = this.props.comment;
         const { body } = this.state;
-
-        console.log(id, body);
-        
+        const comment = {
+            id,
+            body,
+            timestamp: Date.now()
+        };
+        this.props.dispatch(handlerUpdateComment(comment));
+        this.setState({ editEnable: false })      
     }
 
     render() {
-        const { id, author, body, timestamp, voteScore } = this.props.comment
+        const { author, body, timestamp, voteScore } = this.props.comment
         return (
             <div className="comment"> 
                 <div className="apresetation">

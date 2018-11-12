@@ -8,6 +8,7 @@ export const ADD_COMMENTS = 'ADD_COMMENTS'
 export const REMOVE_COMMENTS = 'REMOVE_COMMENTS'
 export const VOTE_UPDATE_COMMENT = 'VOTE_UPDATE_COMMENT'
 export const DELETE_PARENT_POST = 'DELETE_PARENT_POST'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 
 export function handleReceiveComments(postId) {
     return (dispatch) => {
@@ -50,6 +51,18 @@ export function deleteParentPostComments(postId) {
     }
 }
 
+export function handlerUpdateComment(comment) {
+    return dispatch => {
+        dispatch(updateComment(comment))
+        const body = comment.body;
+        const timestamp = comment.timestamp;
+        return ApiAxios.put(`/comments/${comment.id}`, { body, timestamp })
+            .catch((err) => {
+                alert('We found a error while try to save your Comment, please try again.')
+            });
+    }
+}
+
 function voteUpdateComment(commentId, option) {
     return {
         type: VOTE_UPDATE_COMMENT,
@@ -76,6 +89,13 @@ function removeComment(commentId) {
     return {
         type: REMOVE_COMMENTS,
         commentId
+    }
+}
+
+function updateComment(comment) {
+    return {
+        type: UPDATE_COMMENT,
+        comment
     }
 }
 
