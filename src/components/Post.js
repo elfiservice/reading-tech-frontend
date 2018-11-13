@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './Post.css'
 
 import { handlerVoteUpdate } from '../actions/posts'
@@ -15,9 +16,14 @@ class Post extends Component {
     }
 
     render() {
-        if(!this.props.post) {
+        if(!this.props.posts) {
             return <div className="container">Loading...</div>
         }
+
+        if(!this.props.post) {
+            return <Redirect to="/404-page-not-found" />
+        }
+
         const { id, title, author, body, category, commentCount, timestamp, voteScore } = this.props.post
         return (
             <article className="post">
@@ -53,8 +59,13 @@ class Post extends Component {
 
 function mapStateToProps({ posts }, { id }) {
     const post = posts[id]
+    if(_.isEmpty(posts)) {
+        posts = null
+    }
+
     return {
-        post
+        post,
+        posts
     }
 }
 
