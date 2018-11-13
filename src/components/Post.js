@@ -21,7 +21,7 @@ class Post extends Component {
         }
 
         if(!this.props.post) {
-            return <Redirect to="/404-page-not-found" />
+            return <Redirect to="/404" />
         }
 
         const { id, title, author, body, category, commentCount, timestamp, voteScore } = this.props.post

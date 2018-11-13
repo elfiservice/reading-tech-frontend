@@ -16,7 +16,7 @@ const Routes = (props) => {
             <Route path='/category/:cat_name' exact component={Category} />
             <Route path='/post/:id' exact component={PostPage} />
             <Route path='/edit-post/:id' exact component={PostEdit} />
-            <Route path='/404-page-not-found' exact component={Page404} />
+            <Route path='/404' exact component={Page404} />
             <Redirect from="*" to="/" />
         </Switch>
     )
