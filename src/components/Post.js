@@ -28,7 +28,7 @@ class Post extends Component {
         return (
             <article className="post">
                 <header className="inverse-color content">
-                    <h3><Link to={`/post/${id}`}>{title}</Link></h3>
+                    <h3><Link to={`/${category}/${id}`}>{title}</Link></h3>
                     <div className="author">
                         by {author} 
                         <span className="date"><i className="fa fa-calendar" aria-hidden="true"></i>{formatDate(timestamp)}</span>

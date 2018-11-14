@@ -28,8 +28,8 @@ class PostPage extends Component {
     }
 
     deletePost() {
-        const { id } = this.props.match.params
-        this.props.dispatch(handlerDeletePost(id))
+        const { post_id } = this.props.match.params
+        this.props.dispatch(handlerDeletePost(post_id))
         this.hideModal()
         this.setState({ goHome: true })
     }
@@ -38,14 +38,14 @@ class PostPage extends Component {
         if(this.state.goHome) {
             return <Redirect to="/" />
         }
-        const { id } = this.props.match.params
+        const { post_id, category } = this.props.match.params
         return (
             <div className="post-page container">
                 <Link to="/">Back to Posts</Link>
                 <header className="header">
                     <h2>Post Details</h2>
                     <div className="edit-control">
-                        <Link className="btn btn-primary" to={`/edit-post/${id}`} >
+                        <Link className="btn btn-primary" to={`/${category}/${post_id}/edit`} >
                             <i className="fa fa-pencil" aria-hidden="true"></i>
                         </Link>
                     </div>
@@ -55,7 +55,7 @@ class PostPage extends Component {
                         </button>
                     </div>
                 </header>
-                <Post id={id} edit />
+                <Post id={post_id} edit />
                 <Modal hide={this.state.hideModal} >
                     <div className="delete-question">
                         Do you really want to Delete this post?

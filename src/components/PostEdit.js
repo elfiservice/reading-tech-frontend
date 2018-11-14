@@ -6,7 +6,7 @@ import FormPost from './FormPost'
 
 class PostEdit extends Component {
     render() {
-        const postId = this.props.match.params.id
+        const postId = this.props.match.params.post_id
         let { posts } = this.props
         
         if(_.isEmpty(posts)) {
