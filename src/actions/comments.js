@@ -63,16 +63,6 @@ export function handlerUpdateComment(comment) {
     }
 }
 
-export function handleRemoveComment(commentId) {
-    return (dispatch) => {
-        dispatch(removeComment(commentId))
-        return ApiAxios.delete(`/comments/${commentId}`)
-             .catch((err) => {
-                alert('We found a error while try to Delete your comment, please try again.')
-             });
-     }
-}
-
 function voteUpdateComment(commentId, option) {
     return {
         type: VOTE_UPDATE_COMMENT,
@@ -95,7 +85,7 @@ function addComment(comment) {
     }
 }
 
-function removeComment(commentId) {
+export function removeComment(commentId) {
     return {
         type: REMOVE_COMMENTS,
         commentId

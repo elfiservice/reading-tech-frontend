@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Comment.css'
 
-import { handlerVoteUpdate, handlerUpdateComment, handleRemoveComment } from '../actions/comments'
+import { handlerVoteUpdate, handlerUpdateComment } from '../actions/comments'
+import { handleRemoveComment } from '../actions/share'
 
 import { formatDate } from '../util/helpers'
 import VoteScore from './VoteScore'
@@ -80,8 +81,8 @@ class Comment extends Component {
         })
     }
 
-    deleteComment(commentId) {
-        this.props.dispatch(handleRemoveComment(commentId));
+    deleteComment() {
+        this.props.dispatch(handleRemoveComment(this.props.comment));
         this.toggleDeleteBtnModal();
     }
 
@@ -115,7 +116,7 @@ class Comment extends Component {
                             Do you really want to delete this comment?
                         </div>
                         <div className="buttons">
-                            <button className="btn btn-danger" onClick={() => this.deleteComment(id)} >Delete</button>
+                            <button className="btn btn-danger" onClick={this.deleteComment} >Delete</button>
                             <button className="btn btn-cancel" onClick={this.toggleDeleteBtnModal} >Cancel</button>
                         </div>
                     </div>

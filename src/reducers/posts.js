@@ -4,7 +4,8 @@ import {
     VOTE_UPDATE_POST,
     ADD_NEW_POST,
     UPDATE_POST,
-    DELETE_POST
+    DELETE_POST,
+    DEC_COMMENT_COUNT
 } from '../actions/posts'
 
 export default function posts (state = {}, action) {
@@ -48,6 +49,14 @@ export default function posts (state = {}, action) {
                 [action.postId]: {
                     ...state[action.postId],
                     deleted: true
+                }
+            }
+        case DEC_COMMENT_COUNT :
+            return {
+                ...state,
+                [action.postId]: {
+                    ...state[action.postId],
+                    commentCount: state[action.postId].commentCount - 1
                 }
             }
         default:

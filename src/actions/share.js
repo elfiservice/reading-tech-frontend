@@ -1,8 +1,8 @@
 import ApiAxios from '../util/apiconfig'
 
 import { receiveCategories } from './categories'
-import { deleteParentPostComments } from './comments'
-import { receivePosts, deletePost } from './posts'
+import { deleteParentPostComments, removeComment } from './comments'
+import { receivePosts, deletePost, decCommentCount } from './posts'
 
 function getCategories() {
     return ApiAxios.get('/categories')
@@ -36,6 +36,17 @@ export function handlerDeletePost(postId) {
                 alert('We found a error while try to Delete your Post, please try again.')
             });
     }
+}
+
+export function handleRemoveComment(comment) {
+    return (dispatch) => {
+        dispatch(removeComment(comment.id))
+        dispatch(decCommentCount(comment.parentId))
+        return ApiAxios.delete(`/comments/${comment.id}`)
+             .catch((err) => {
+                alert('We found a error while try to Delete your comment, please try again.')
+             });
+     }
 }
 
 

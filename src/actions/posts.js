@@ -6,6 +6,7 @@ export const VOTE_UPDATE_POST = 'VOTE_UPDATE_POST'
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const DEC_COMMENT_COUNT = 'DEC_COMMENT_COUNT'
 
 export function receivePosts(posts) {
     return {
@@ -17,6 +18,13 @@ export function receivePosts(posts) {
 export function addCommentCount(postId) {
     return {
         type: ADD_COMMENT_COUNT,
+        postId
+    }
+}
+
+export function decCommentCount(postId) {
+    return {
+        type: DEC_COMMENT_COUNT,
         postId
     }
 }
