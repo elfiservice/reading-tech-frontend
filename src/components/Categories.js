@@ -9,9 +9,12 @@ const Categories = (props) => {
         <div className="categories"> 
             <h2>Categories</h2>
             <ul className="cat-list">
+                <li>
+                    <Link to={`/`}>all</Link>
+                </li>
                 {props.categories.map(cat => (
                     <li key={cat.name}>
-                        <Link to={`/category/${cat.name}`}>{cat.name}</Link>
+                        <Link to={`/${cat.name}`}>{cat.name}</Link>
                     </li>
                 ))}
             </ul>   

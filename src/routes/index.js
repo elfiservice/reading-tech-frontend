@@ -13,7 +13,7 @@ const Routes = (props) => {
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/new-post' exact component={NewPost} />
-            <Route path='/category/:cat_name' exact component={Category} />
+            <Route path='/:cat_name' exact component={Category} />
             <Route exact path='/:category/:post_id' component={PostPage} />
             <Route exact path='/:category/:post_id/edit' component={PostEdit} />
             <Route path='/404' exact component={Page404} />
