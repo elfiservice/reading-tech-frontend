@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux';
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import './PostPage.css'
@@ -6,6 +8,7 @@ import './PostPage.css'
 import Post from '../components/Post'
 import Modal from './Modal'
 import { handlerDeletePost } from '../actions/share'
+import { handlerVoteUpdate } from '../actions/posts'
 
 class PostPage extends Component {
     constructor(props) {
@@ -29,7 +32,7 @@ class PostPage extends Component {
 
     deletePost() {
         const { post_id } = this.props.match.params
-        this.props.dispatch(handlerDeletePost(post_id))
+        this.props.actions.handlerDeletePost(post_id)
         this.hideModal()
         this.setState({ goHome: true })
     }
@@ -38,14 +41,23 @@ class PostPage extends Component {
         if(this.state.goHome) {
             return <Redirect to="/" />
         }
-        const { post_id, category } = this.props.match.params
+        const { post, category, posts, actions } = this.props
+
+        if(!posts) {
+            return <div className="container container-main">Loading...</div>
+        }
+
+        if(!post) {
+            return <Redirect to="/404" />
+        }
+        
         return (
             <div className="post-page container">
                 <Link to="/">Back to Posts</Link>
                 <header className="header">
                     <h2>Post Details</h2>
                     <div className="edit-control">
-                        <Link className="btn btn-primary" to={`/${category}/${post_id}/edit`} >
+                        <Link className="btn btn-primary" to={`/${category}/${post.id}/edit`} >
                             <i className="fa fa-pencil" aria-hidden="true"></i>
                         </Link>
                     </div>
@@ -55,7 +67,7 @@ class PostPage extends Component {
                         </button>
                     </div>
                 </header>
-                <Post id={post_id} edit />
+                <Post post={post} edit actions={actions} />
                 <Modal hide={this.state.hideModal} >
                     <div className="delete-question">
                         Do you really want to Delete this post?
@@ -74,4 +86,28 @@ class PostPage extends Component {
     }
 }
 
-export default connect()(PostPage)
+function mapStateToProps({ posts }, props) {
+    const postId = props.match.params.post_id
+    const category = props.match.params.category
+    const post = posts[postId]
+
+    if(_.isEmpty(posts)) {
+        posts = null
+    }
+
+    return {
+        post,
+        posts,
+        category
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    const actions = bindActionCreators({ 
+        handlerVoteUpdate,
+        handlerDeletePost
+     }, dispatch);
+    return { actions }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
