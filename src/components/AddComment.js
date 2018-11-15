@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import './AddComment.css'
 
 import { formatComment } from '../util/helpers'
-import { handleAddComment } from '../actions/comments'
 
 import InputText from '../templates/InputText'
 
@@ -27,7 +25,7 @@ class AddComment extends Component {
         e.preventDefault()
         const { comment, author } = this.state
         const commentToDB = formatComment(comment, author, this.props.postId)
-        this.props.dispatch(handleAddComment(commentToDB))
+        this.props.addComment(commentToDB);
         this.setState({ comment: '', author: '' })
     }
 
@@ -58,4 +56,4 @@ class AddComment extends Component {
     }
 }
 
-export default connect()(AddComment)
+export default AddComment;
