@@ -48,7 +48,7 @@ class PostPage extends Component {
         }
 
         if(!post) {
-            return <Redirect to="/404" />
+            return <Redirect to={`/404`} />
         }
         
         return (

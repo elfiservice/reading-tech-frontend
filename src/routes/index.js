@@ -11,12 +11,12 @@ import Page404 from '../components/Page404'
 const Routes = (props) => {
     return (
         <Switch>
+            <Route exact path='/404' component={Page404} />
             <Route exact path='/' component={Home} />
             <Route path='/new-post' exact component={NewPost} />
-            <Route path='/:cat_name' exact component={Category} />
+            <Route exact path='/:cat_name' component={Category} />
             <Route exact path='/:category/:post_id' component={PostPage} />
             <Route exact path='/:category/:post_id/edit' component={PostEdit} />
-            <Route path='/404' exact component={Page404} />
             <Redirect from="*" to="/" />
         </Switch>
     )
