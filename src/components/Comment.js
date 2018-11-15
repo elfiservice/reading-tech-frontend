@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import './Comment.css'
-
-import { handlerVoteUpdate, handlerUpdateComment } from '../actions/comments'
-import { handleRemoveComment } from '../actions/share'
 
 import { formatDate } from '../util/helpers'
 import VoteScore from './VoteScore'
@@ -37,7 +33,7 @@ class Comment extends Component {
 
     scoreUpdateClick(option) {
         const { id } = this.props.comment
-        this.props.dispatch(handlerVoteUpdate(id, option))  
+        this.props.actions.handlerVoteUpdate(id, option)
     }
 
     toggleEditBtn() {
@@ -70,7 +66,7 @@ class Comment extends Component {
             body,
             timestamp: Date.now()
         };
-        this.props.dispatch(handlerUpdateComment(comment));
+        this.props.actions.handlerUpdateComment(comment);
         this.setState({ editEnable: false })      
     }
 
@@ -82,7 +78,7 @@ class Comment extends Component {
     }
 
     deleteComment() {
-        this.props.dispatch(handleRemoveComment(this.props.comment));
+        this.props.actions.handleRemoveComment(this.props.comment);
         this.toggleDeleteBtnModal();
     }
 
@@ -126,4 +122,4 @@ class Comment extends Component {
     }
 }
 
-export default connect()(Comment)
+export default Comment

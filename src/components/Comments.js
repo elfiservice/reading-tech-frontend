@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-import { handleReceiveComments, handleAddComment } from '../actions/comments'
+import { 
+        handleReceiveComments,
+        handleAddComment, 
+        handlerVoteUpdate, 
+        handlerUpdateComment 
+    } from '../actions/comments'
 
+import { handleRemoveComment } from '../actions/share'    
 
 import CommentList from './CommentList'
 import AddComment from './AddComment'
@@ -13,11 +20,11 @@ class Comments extends Component {
         this.addComment = this.addComment.bind(this);
     }
     componentDidMount() {
-        this.props.dispatch(handleReceiveComments(this.props.postId))
+        this.props.actions.handleReceiveComments(this.props.postId)
     }
 
     addComment(commentToDB) {
-        this.props.dispatch(handleAddComment(commentToDB))
+        this.props.actions.handleAddComment(commentToDB)
     }
 
     render() {
@@ -25,7 +32,7 @@ class Comments extends Component {
         return (
             <div className="comments-container">
                 <AddComment postId={postId} addComment={this.addComment} />
-                <CommentList comments={comments} />
+                <CommentList comments={comments} actions={this.props.actions} />
             </div>
         )
     }
@@ -39,4 +46,15 @@ function mapStateToProps({ comments }, { postId }) {
     }
 }
 
-export default connect(mapStateToProps)(Comments)
+function mapDispatchToProps(dispatch) {
+    const actions = bindActionCreators({ 
+        handleReceiveComments,
+        handleAddComment, 
+        handlerVoteUpdate, 
+        handlerUpdateComment,
+        handleRemoveComment
+     }, dispatch);
+    return { actions }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)
