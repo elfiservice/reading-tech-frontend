@@ -7,7 +7,7 @@ import './Post.css'
 import { handlerVoteUpdate } from '../actions/posts'
 
 import { formatDate } from '../util/helpers'
-import Comments from './Comments'
+import Comments from '../containers/Comments'
 import VoteScore from './VoteScore'
 
 class Post extends Component {

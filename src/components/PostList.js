@@ -1,30 +1,16 @@
 import React from 'react'
 import _ from 'lodash'
-import { connect } from 'react-redux'
 
 import Post from './Post'
 
 const PostList = (props) => {
-    if(props.postsIds.length <= 0) {
+    if(_.isEmpty(props.posts)) {
         return   <div className="post-list alert alert-info">No posts to show yet, be the firt one!</div>
     }
-    return (
-        <div className="post-list">
-            {props.postsIds.map( id => <Post key={id} id={id} /> )}
-        </div>
-    )
-}
 
-function mapStateToProps({ posts }, { orderBy, category }) {
-    let postsNotDeleted = Object.values(posts).filter( post => post.deleted === false )
-    posts = _.mapValues(_.keyBy(postsNotDeleted, 'id'))
-
-    if(category) {
-        let postsByCategory = Object.values(posts).filter( post => post.category === category )
-        posts = _.mapValues(_.keyBy(postsByCategory, 'id'))
-    }
-    return {
-        postsIds: Object.keys(posts)
+    const orderByThePosts = () => {
+        const { posts , orderBy } = props;
+        const postsIds = Object.keys(posts)
             .sort((a,b) => {
                 if(orderBy === 'date') {
                     return posts[b].timestamp - posts[a].timestamp
@@ -32,7 +18,15 @@ function mapStateToProps({ posts }, { orderBy, category }) {
                     return posts[b].voteScore - posts[a].voteScore
                 }
             })
+
+        return postsIds.map( id => <Post key={id} id={id} /> )
     }
+
+    return (
+        <div className="post-list">
+            {orderByThePosts()}
+        </div>
+    )
 }
 
-export default connect(mapStateToProps)(PostList)
+export default PostList

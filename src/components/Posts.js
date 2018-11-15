@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
+import { connect } from 'react-redux'
 import './Posts.css'
 import PostList from './PostList'
 
@@ -30,10 +32,25 @@ class Posts extends Component {
                     </div>
                 </div>
                 
-                <PostList orderBy={this.state.orderBy} category={category} />
+                <PostList posts={this.props.posts} orderBy={this.state.orderBy} />
             </div>
         )
     }
 }
 
-export default Posts
+function mapStateToProps({ posts }, { category }) {
+    let postsNotDeleted = Object.values(posts).filter( post => post.deleted === false )
+    posts = _.mapValues(_.keyBy(postsNotDeleted, 'id'))
+
+    if(category) {
+        let postsByCategory = Object.values(posts).filter( post => post.category === category )
+        posts = _.mapValues(_.keyBy(postsByCategory, 'id'))
+    }
+    return {
+        posts
+    }
+}
+
+export default connect(mapStateToProps)(Posts)
+
+//export default Posts

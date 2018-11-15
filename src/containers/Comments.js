@@ -11,8 +11,8 @@ import {
 
 import { handleRemoveComment } from '../actions/share'    
 
-import CommentList from './CommentList'
-import AddComment from './AddComment'
+import CommentList from '../components/CommentList'
+import AddComment from '../components/AddComment'
 
 class Comments extends Component {
     constructor(props) {
