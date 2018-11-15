@@ -19,7 +19,7 @@ const PostList = (props) => {
                 }
             })
 
-        return postsIds.map( id => <Post key={id} id={id} /> )
+        return postsIds.map( id => <Post key={id} post={posts[id]} actions={props.actions} /> )
     }
 
     return (

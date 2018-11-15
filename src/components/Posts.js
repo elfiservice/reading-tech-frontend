@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux';
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import './Posts.css'
 import PostList from './PostList'
+import { handlerVoteUpdate } from '../actions/posts'
 
 class Posts extends Component {
     constructor(props) {
@@ -32,7 +34,11 @@ class Posts extends Component {
                     </div>
                 </div>
                 
-                <PostList posts={this.props.posts} orderBy={this.state.orderBy} />
+                <PostList 
+                    posts={this.props.posts} 
+                    orderBy={this.state.orderBy}
+                    actions={this.props.actions}
+                />
             </div>
         )
     }
@@ -51,6 +57,11 @@ function mapStateToProps({ posts }, { category }) {
     }
 }
 
-export default connect(mapStateToProps)(Posts)
+function mapDispatchToProps(dispatch) {
+    const actions = bindActionCreators({ 
+        handlerVoteUpdate
+     }, dispatch);
+    return { actions }
+}
 
-//export default Posts
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)
