@@ -4,9 +4,9 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import Home from '../components/Home'
 import NewPost from '../components/NewPost'
 import Category from '../components/Category'
-import PostPage from '../components/PostPage'
+import PostPage from '../containers/PostPage'
 import PostEdit from '../components/PostEdit'
-import Page404 from '../components/Page404'
+import Page404 from '../containers/Page404'
 
 const Routes = (props) => {
     return (

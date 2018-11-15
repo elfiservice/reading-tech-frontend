@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 
 import Categories from './Categories'
-import Posts from './Posts'
+import Posts from '../containers/Posts'
 
 const Home = (props) => {
     return (

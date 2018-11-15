@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Categories from './Categories'
-import Posts from './Posts'
+import Posts from '../containers/Posts'
 
 const Category = (props) => {
 

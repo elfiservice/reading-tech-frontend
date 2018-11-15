@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import './Posts.css'
-import PostList from './PostList'
+import PostList from '../components/PostList'
 import { handlerVoteUpdate } from '../actions/posts'
 
 class Posts extends Component {

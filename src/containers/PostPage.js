@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom'
 import './PostPage.css'
 
 import Post from '../components/Post'
-import Modal from './Modal'
+import Modal from '../components/Modal'
 import { handlerDeletePost } from '../actions/share'
 import { handlerVoteUpdate } from '../actions/posts'
 
