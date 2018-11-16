@@ -1,13 +1,18 @@
 import React from 'react'
 
-/*
-    props requireds
-    @prop name
-    @placeholder
-    @value
-    @type (default is 'text')
-
-*/
+/**
+ * Input type **text**
+ *
+ * @prop {string} name (required)
+ * @prop {string} placeholder (required)
+ * @prop {string} type (optional) If not provided, **text** is the default
+ * @prop {string} value (required)
+ * @function onChange (required)
+ * @prop {boolean} required (optional) If **true** this input is required to fill
+ * @prop {boolean} autofocus (optional) If **true** this input will be selected by default
+ * @prop {boolean} autocomplete (optinonal) provide **on** to enabled
+ * @prop {string} maxlength (optional) NOTE: provide a string as a **number**. Ex: "120"
+ */
 const TypeText = (props) => (
     <input 
         aria-label={props.placeholder} 
@@ -19,7 +24,7 @@ const TypeText = (props) => (
         onChange={props.onChange}
         required={props.required}
         autoFocus={props.autofocus}
-        autoComplete={props.name}
+        autoComplete={props.autocomplete}
         maxLength={props.maxlength ? props.maxlength : ""} 
         />
     )

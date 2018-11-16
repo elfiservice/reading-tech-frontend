@@ -23,3 +23,8 @@
     background-color: #343a40;
     color: #fff;
 }
+
+.categories .header {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,11 @@
+.new-category-modal {
+    text-align: center;
+}
+
+.new-category-modal .modal_content {
+    padding: 40px;
+}
+
+.new-category-modal .btn {
+    margin-top: 10px;
+}

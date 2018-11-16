@@ -3,11 +3,15 @@ import './Categories.css'
 import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
+import NewCategory from '../components/NewCategory'
 
 const Categories = (props) => {
     return (
         <div className="categories"> 
-            <h2>Categories</h2>
+            <div className="header">
+                <h2>Categories</h2>
+                <NewCategory />
+            </div>
             <ul className="cat-list">
                 <li>
                     <Link to={`/`}>all</Link>
