@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import FormPost from './FormPost'
+import { bindActionCreators } from 'redux';
+
+import FormPost from '../components/FormPost'
+import { handlerUpdatePost } from '../actions/posts'
 
 class PostEdit extends Component {
     render() {
         const postId = this.props.match.params.post_id
-        let { posts } = this.props
+        let { posts, categories, actions } = this.props
         
         if(_.isEmpty(posts)) {
             posts = null
@@ -27,16 +30,22 @@ class PostEdit extends Component {
                     <Link to="/">Back to Posts</Link>
                     <h2>Edit Post</h2>
                 </header>
-                <FormPost post={post} />
+                <FormPost post={post} categories={categories} actions={actions} />
             </div>
         )
     }
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts, categories }) {
     return {
-        posts
+        posts,
+        categories: Object.values(categories)
     }
 }
 
-export default connect(mapStateToProps)(PostEdit)
+function mapDispatchToProps(dispatch) {
+    const actions = bindActionCreators({ handlerUpdatePost }, dispatch);
+    return { actions };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostEdit)

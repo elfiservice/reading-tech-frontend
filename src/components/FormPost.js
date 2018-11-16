@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import './FormPost.css'
 
@@ -8,8 +7,14 @@ import TextArea from './TypeTextarea'
 
 import { generateUniqueId } from '../util/helpers'
 
-import { handlerAddNewPost, handlerUpdatePost } from '../actions/posts'
-
+/**
+ * Form to New and Edit a Post
+ *
+ * @prop {Array} categories (required)
+ * @function actions **handlerAddNewPost** is requerid when adding New Post or **handlerUpdatePost** required when Editing a existing Post
+ * @prop {Object} post (optional - Just when Edit a Post)
+ * 
+ */
 class FormPost extends Component {
     constructor(props) {
         super(props)
@@ -63,7 +68,7 @@ class FormPost extends Component {
                 timestamp: Date.now()
             }
 
-            this.props.dispatch(handlerAddNewPost(post))
+            this.props.actions.handlerAddNewPost(post);
             this.setState({ 
                 title: '',
                 body: '',
@@ -90,7 +95,7 @@ class FormPost extends Component {
             timestamp: Date.now()
         }
 
-        this.props.dispatch(handlerUpdatePost(post))
+        this.props.actions.handlerUpdatePost(post);
         this.setState({ 
             toHome: true
             })
@@ -152,10 +157,4 @@ class FormPost extends Component {
     }
 }
 
-function mapStateToProps({ categories }) {
-    return {
-        categories: Object.values(categories)
-    }
-}
-
-export default connect(mapStateToProps)(FormPost)
+export default FormPost
