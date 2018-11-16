@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 
-import Categories from './Categories'
+import Categories from '../containers/Categories'
 import Posts from '../containers/Posts'
 
 const Home = (props) => {
@@ -13,7 +13,7 @@ const Home = (props) => {
                         <Categories />
                     </div>
                     <div className="col-md-8">
-                        <Posts />
+                        <Posts category={props.category ? props.category : undefined} />
                     </div>
                 </div>
             </div>

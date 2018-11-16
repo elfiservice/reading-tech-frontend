@@ -1,24 +1,8 @@
 import React from 'react'
+import Home from './Home'
 
-import Categories from './Categories'
-import Posts from '../containers/Posts'
-
-const Category = (props) => {
-
-    return (
-        <div className="home"> 
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-4">
-                        <Categories />
-                    </div>
-                    <div className="col-md-8">
-                        <Posts category={props.match.params.cat_name} />
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+const Category = (props) =>  (
+    <Home category={props.match.params.cat_name} /> 
+)
 
 export default Category
