@@ -137,7 +137,10 @@ class FormPost extends Component {
                         onChange={this.onChangeCat}
                         required
                     >
-                        <option value="" disabled>Select category</option>
+                        {this.state.category 
+                            ? <option value={this.state.category} disabled>{this.state.category}</option>
+                            : <option value="" disabled>Select category</option>
+                        }
                         {this.props.categories.map(cat => (
                             <option key={cat.name} value={cat.name}>{cat.name}</option>
                         ))}
