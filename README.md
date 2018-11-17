@@ -8,7 +8,7 @@ A backend RestFul Api is required.
 ## Getting Started
 To test this App
 ### Back-end
-- Download or clone to local machine this repo ``https://github.com/udacity/reactnd-project-readable-starter``
+- Download or clone to local machine this repo ``https://github.com/elfiservice/reading-tech-backend``
 - And follow the steps, go into ``api-server`` folder, in a terminal execute ``npm install`` and ``node server`` to lauch the server.
 ### Front-end
 - Just download or clone this project ``git clone https://github.com/elfiservice/reading-tech-frontend.git``
