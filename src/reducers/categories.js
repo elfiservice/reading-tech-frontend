@@ -1,4 +1,4 @@
-import { RECEIVE_CATEGORIES } from '../actions/categories'
+import { RECEIVE_CATEGORIES, ADD_CATEGORY } from '../actions/categories'
 
 export default function categories (state = {}, action) {
     switch(action.type) {
@@ -6,6 +6,17 @@ export default function categories (state = {}, action) {
             return {
                 ...state,
                 ...action.categories
+            }
+        case ADD_CATEGORY :
+            //SELECT NEXT INDEX
+            const indexs = Object.keys(state);
+            const nextIndex = indexs.length;
+            return {
+                ...state,
+                [nextIndex]: {
+                    name: action.category.name,
+                    path: action.category.path
+                }
             }
         default:
             return state

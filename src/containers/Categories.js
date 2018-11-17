@@ -18,7 +18,7 @@ const Categories = (props) => {
                 </li>
                 {props.categories.map(cat => (
                     <li key={cat.name}>
-                        <Link to={`/${cat.name}`}>{cat.name}</Link>
+                        <Link to={`/${cat.path}`}>{cat.name}</Link>
                     </li>
                 ))}
             </ul>   
