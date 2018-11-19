@@ -1,16 +1,25 @@
 import React from 'react'
+import { bindActionCreators } from 'redux';
 import './Categories.css'
 import { connect } from 'react-redux'
+
+import { handlerDeleteCategory, handlerAddCategory } from '../actions/categories'
 
 import { Link } from 'react-router-dom'
 import NewCategory from '../components/NewCategory'
 
 const Categories = (props) => {
+    function deleteBtn(e, cat) {
+        e.preventDefault()
+        console.log(cat);
+        props.actions.handlerDeleteCategory(cat)
+    }
+    
     return (
         <div className="categories"> 
             <div className="header">
                 <h2>Categories</h2>
-                <NewCategory />
+                <NewCategory actions={props.actions} />
             </div>
             <ul className="cat-list">
                 <li>
@@ -18,7 +27,14 @@ const Categories = (props) => {
                 </li>
                 {props.categories.map(cat => (
                     <li key={cat.name}>
-                        <Link to={`/${cat.path}`}>{cat.name}</Link>
+                        <Link to={`/${cat.path}`}>
+                            <div className="cat-content">
+                                <span>{cat.name}</span>
+                                <button className="btn" onClick={(e) => deleteBtn(e, cat)}>
+                                    <i className="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </Link>
                     </li>
                 ))}
             </ul>   
@@ -32,4 +48,12 @@ function mapStateToProps({ categories }) {
     }
 }
 
-export default connect(mapStateToProps)(Categories)
+function mapDispatchToProps(dispatch) {
+    const actions = bindActionCreators({ 
+        handlerDeleteCategory,
+        handlerAddCategory
+     }, dispatch);
+    return { actions }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import './NewCategory.css'
 import Modal from './Modal'
 import InputText from './TypeText'
 
-import { handlerAddCategory } from '../actions/categories'
+// import { handlerAddCategory } from '../actions/categories'
 
 class NewCategory extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class NewCategory extends Component {
             path: pathUnderscored
         }
 
-        this.props.handlerAddCategory(category);
+        this.props.actions.handlerAddCategory(category);
         this.setState({ hideModal: true, category: '' });
     }
 
@@ -70,4 +70,4 @@ class NewCategory extends Component {
     }
 }
 
-export default connect(null, { handlerAddCategory })(NewCategory)
+export default NewCategory

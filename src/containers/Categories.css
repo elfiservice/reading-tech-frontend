@@ -28,3 +28,14 @@
     display: flex;
     justify-content: space-between;
 }
+
+.categories .cat-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categories li button:hover {
+    background-color: #d42828;
+    color: #fff;
+}

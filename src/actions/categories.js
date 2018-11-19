@@ -2,6 +2,7 @@ import ApiAxios from '../util/apiconfig'
 
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const ADD_CATEGORY = 'ADD_CATEGORY'
+export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 
 export function receiveCategories(categories) {
     return {
@@ -21,9 +22,28 @@ export function handlerAddCategory(category) {
     }
 }
 
+export function handlerDeleteCategory(category) {
+    return (dispatch) => {
+            dispatch(deleteCategory(category))
+        return ApiAxios.delete(`/categories/${category.path}`)
+                .catch( err => {
+                    console.log('Error Categories Actions: ', err);
+                    alert('We found a error while try to delete the Category, please try again.')
+                })
+    }
+}
+
 function addCategory(category) {
     return {
         type: ADD_CATEGORY,
+        category
+    }
+}
+
+//ToDo: fazer remover e atualizar Cada categoria
+function deleteCategory(category) {
+    return {
+        type: DELETE_CATEGORY,
         category
     }
 }
