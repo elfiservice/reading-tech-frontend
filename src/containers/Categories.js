@@ -11,9 +11,19 @@ import NewCategory from '../components/NewCategory'
 const Categories = (props) => {
     function deleteBtn(e, cat) {
         e.preventDefault()
-        console.log(cat);
-//ToDo: fazer checagem se existe posts com a categoria sendo excluida
+        if(checkExistPostToCategory(cat)) {
+            alert('Ops! Have any Post registred to this category!');
+            return false;
+        }
         props.actions.handlerDeleteCategory(cat)
+    }
+
+    function checkExistPostToCategory(cat) {
+        const checking = props.posts.filter( post => (
+            post.category.localeCompare(cat.name) === 0 
+            && post.deleted === false
+        ));
+        return checking.length > 0;
     }
     
     return (
@@ -43,9 +53,10 @@ const Categories = (props) => {
     )
 }
 
-function mapStateToProps({ categories }) {
+function mapStateToProps({ posts, categories }) {
     return {
-        categories: Object.values(categories)
+        categories: Object.values(categories),
+        posts: Object.values(posts)
     }
 }
 
