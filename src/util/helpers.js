@@ -88,6 +88,14 @@ export const getCurrentLocation = (elementToShowMsgLocation) => {
     }
 }
 
+export const spaceToUnderscore = (string) => {
+    return string.replace(/ /g,"_");
+}
+
+export const trimString = (string) => {
+    return string.trim();
+}
+
 export default () => {
     return console.log('não tem funcao default Aqui em Helpers');
     

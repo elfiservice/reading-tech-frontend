@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
 import './NewCategory.css'
 import Modal from './Modal'
 import InputText from './TypeText'
-
-// import { handlerAddCategory } from '../actions/categories'
+import { spaceToUnderscore, trimString } from '../util/helpers'
 
 class NewCategory extends Component {
     constructor(props) {
@@ -32,17 +30,25 @@ class NewCategory extends Component {
 
     submitForm(e) {
         e.preventDefault()
-        console.log('salvando cat');
-        const categoryTrim = this.state.category.trim();
-        //Handler path prop when have more than 2 words
-        const pathUnderscored = categoryTrim.replace(/ /g,"_");
+        const categoryTrim = trimString(this.state.category);
+        const pathUnderscored = spaceToUnderscore(categoryTrim);
         const category = {
             name: categoryTrim,
             path: pathUnderscored
         }
+        
+        if(this.checkExistCategory(category)) {
+            alert('Category already exist, try another please!');
+        } else {
+            this.props.actions.handlerAddCategory(category);
+            this.setState({ hideModal: true, category: '' });
+        }
 
-        this.props.actions.handlerAddCategory(category);
-        this.setState({ hideModal: true, category: '' });
+    }
+
+    checkExistCategory(category) {
+        const checking = this.props.categories.filter( cat => cat.path.localeCompare(category.path) === 0 );
+        return checking.length > 0;
     }
 
     render() {

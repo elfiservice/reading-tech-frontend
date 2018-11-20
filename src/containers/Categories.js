@@ -12,6 +12,7 @@ const Categories = (props) => {
     function deleteBtn(e, cat) {
         e.preventDefault()
         console.log(cat);
+//ToDo: fazer checagem se existe posts com a categoria sendo excluida
         props.actions.handlerDeleteCategory(cat)
     }
     
@@ -19,7 +20,7 @@ const Categories = (props) => {
         <div className="categories"> 
             <div className="header">
                 <h2>Categories</h2>
-                <NewCategory actions={props.actions} />
+                <NewCategory actions={props.actions} categories={props.categories} />
             </div>
             <ul className="cat-list">
                 <li>

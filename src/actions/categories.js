@@ -40,7 +40,6 @@ function addCategory(category) {
     }
 }
 
-//ToDo: fazer remover e atualizar Cada categoria
 function deleteCategory(category) {
     return {
         type: DELETE_CATEGORY,
