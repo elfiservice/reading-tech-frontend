@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
+import { spaceToUnderscore, trimString } from '../util/helpers'
 
 class CategoryItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
             editEnable: false,
+            currentlyCategory: {},
             category: '',
         }
         this.toggleEditBtn = this.toggleEditBtn.bind(this);
@@ -16,7 +18,7 @@ class CategoryItem extends Component {
 
     componentDidMount() {
         const category = this.props.cat.name
-        this.setState({ category })
+        this.setState({ category, currentlyCategory: this.props.cat })
     }
 
     handleInputChange(event) {
@@ -62,7 +64,16 @@ class CategoryItem extends Component {
     }
 
     saveEditedCategory() {
-        console.log('salvando cat ', this.state.category);
+        
+        const categoryTrim = trimString(this.state.category);
+        const pathUnderscored = spaceToUnderscore(categoryTrim);
+        const category = {
+            name: categoryTrim,
+            path: pathUnderscored
+        }
+        console.log('salvando cat ', category);
+        console.log('cat atual ', this.state.currentlyCategory);
+        this.props.actions.handlerUpdateCategory(category, this.state.currentlyCategory)
         
     }
 

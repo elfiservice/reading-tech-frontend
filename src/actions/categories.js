@@ -3,6 +3,7 @@ import ApiAxios from '../util/apiconfig'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const ADD_CATEGORY = 'ADD_CATEGORY'
 export const DELETE_CATEGORY = 'DELETE_CATEGORY'
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY'
 
 export function receiveCategories(categories) {
     return {
@@ -33,6 +34,17 @@ export function handlerDeleteCategory(category) {
     }
 }
 
+export function handlerUpdateCategory(newCategory, currentlyCategory) {
+    return (dispatch) => {
+            dispatch(updateCategory(newCategory, currentlyCategory))
+        return ApiAxios.put(`/categories/${currentlyCategory.path}`, newCategory)
+                .catch( err => {
+                    console.log('Error Categories Actions: ', err);
+                    alert('We found a error while try to update the Category, please try again.')
+                })
+    }
+}
+
 function addCategory(category) {
     return {
         type: ADD_CATEGORY,
@@ -47,4 +59,10 @@ function deleteCategory(category) {
     }
 }
 
-//todo: Editar Categoria Existente!
+function updateCategory(newCategory, currentlyCategory) {
+    return {
+        type: UPDATE_CATEGORY,
+        newCategory,
+        currentlyCategory
+    }
+}

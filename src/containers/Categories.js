@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import './Categories.css'
 import { connect } from 'react-redux'
 
-import { handlerDeleteCategory, handlerAddCategory } from '../actions/categories'
+import { handlerDeleteCategory, handlerAddCategory, handlerUpdateCategory } from '../actions/categories'
 
 import { Link } from 'react-router-dom'
 import NewCategory from '../components/NewCategory'
@@ -37,7 +37,11 @@ const Categories = (props) => {
                 <li>
                     <Link to={`/`}>all</Link>
                 </li>
-                <CategoryList categories={props.categories} deleteBtn={deleteBtn} />
+                <CategoryList 
+                    categories={props.categories} 
+                    deleteBtn={deleteBtn} 
+                    actions={props.actions} 
+                />
             </ul>   
         </div>
     )
@@ -53,7 +57,8 @@ function mapStateToProps({ posts, categories }) {
 function mapDispatchToProps(dispatch) {
     const actions = bindActionCreators({ 
         handlerDeleteCategory,
-        handlerAddCategory
+        handlerAddCategory,
+        handlerUpdateCategory
      }, dispatch);
     return { actions }
 }

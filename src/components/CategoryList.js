@@ -5,9 +5,13 @@ import CategoryItem from './CategoryItem'
 const CategoryList = (props) => {
     return (
         <Fragment>
-            {props.categories.map(cat => (
-                <li key={cat.name}>
-                    <CategoryItem cat={cat} deleteBtn={props.deleteBtn} />
+            {props.categories.map((cat, index) => (
+                <li key={index}>
+                    <CategoryItem 
+                        cat={cat} 
+                        deleteBtn={props.deleteBtn} 
+                        actions={props.actions}
+                    />
                 </li>
             ))}
         </Fragment>
