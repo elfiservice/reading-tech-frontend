@@ -7,6 +7,7 @@ import { handlerDeleteCategory, handlerAddCategory } from '../actions/categories
 
 import { Link } from 'react-router-dom'
 import NewCategory from '../components/NewCategory'
+import CategoryList from '../components/CategoryList'
 
 const Categories = (props) => {
     function deleteBtn(e, cat) {
@@ -36,18 +37,7 @@ const Categories = (props) => {
                 <li>
                     <Link to={`/`}>all</Link>
                 </li>
-                {props.categories.map(cat => (
-                    <li key={cat.name}>
-                        <Link to={`/${cat.path}`}>
-                            <div className="cat-content">
-                                <span>{cat.name}</span>
-                                <button className="btn" onClick={(e) => deleteBtn(e, cat)}>
-                                    <i className="fa fa-trash-o" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </Link>
-                    </li>
-                ))}
+                <CategoryList categories={props.categories} deleteBtn={deleteBtn} />
             </ul>   
         </div>
     )
