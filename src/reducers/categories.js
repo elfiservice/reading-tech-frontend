@@ -1,4 +1,9 @@
-import { RECEIVE_CATEGORIES, ADD_CATEGORY, DELETE_CATEGORY } from '../actions/categories'
+import { 
+    RECEIVE_CATEGORIES, 
+    ADD_CATEGORY, 
+    DELETE_CATEGORY, 
+    UPDATE_CATEGORY 
+} from '../actions/categories'
 
 export default function categories (state = {}, action) {
     switch(action.type) {
@@ -23,6 +28,20 @@ export default function categories (state = {}, action) {
             const categoriesAfterRemovedItem = categoriesArray.filter( cat => cat.path !== action.category.path )
             return {
                 ...categoriesAfterRemovedItem
+            }
+        case UPDATE_CATEGORY :
+            let index = null
+            for (let prop in state) {
+                if(state[prop].path === action.currentlyCategory.path) {
+                    index = prop
+                }
+            }
+            return {
+                ...state,
+                [index]: {
+                    name: action.newCategory.name,
+                    path: action.newCategory.path
+                }
             }
         default:
             return state

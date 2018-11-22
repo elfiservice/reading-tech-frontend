@@ -64,17 +64,18 @@ class CategoryItem extends Component {
     }
 
     saveEditedCategory() {
-        
         const categoryTrim = trimString(this.state.category);
         const pathUnderscored = spaceToUnderscore(categoryTrim);
         const category = {
             name: categoryTrim,
             path: pathUnderscored
         }
-        console.log('salvando cat ', category);
-        console.log('cat atual ', this.state.currentlyCategory);
         this.props.actions.handlerUpdateCategory(category, this.state.currentlyCategory)
-        
+        this.setState({
+            editEnable: false,
+            currentlyCategory: category,
+            category: category.name,
+        })   
     }
 
     render() {
