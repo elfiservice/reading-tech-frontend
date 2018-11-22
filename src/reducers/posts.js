@@ -5,7 +5,8 @@ import {
     ADD_NEW_POST,
     UPDATE_POST,
     DELETE_POST,
-    DEC_COMMENT_COUNT
+    DEC_COMMENT_COUNT,
+    UPDATING_CATEGORY_POST
 } from '../actions/posts'
 
 export default function posts (state = {}, action) {
@@ -59,6 +60,14 @@ export default function posts (state = {}, action) {
                     commentCount: state[action.postId].commentCount - 1
                 }
             }
+        case UPDATING_CATEGORY_POST :
+            const result = Object.values(state).filter( post =>  post.category === action.currentlyCategory.path )
+            let postsToUpdate = {...state}
+            for( let i = 0; i < result.length; i++ ) {
+                const postId = result[i].id
+                postsToUpdate[postId].category = action.newCategory.name
+            }
+            return postsToUpdate
         default:
             return state
     }

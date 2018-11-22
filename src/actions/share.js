@@ -1,8 +1,8 @@
 import ApiAxios from '../util/apiconfig'
 
-import { receiveCategories } from './categories'
+import { receiveCategories, updateCategory } from './categories'
 import { deleteParentPostComments, removeComment } from './comments'
-import { receivePosts, deletePost, decCommentCount } from './posts'
+import { receivePosts, deletePost, decCommentCount, updatingCategoryPost } from './posts'
 
 function getCategories() {
     return ApiAxios.get('/categories')
@@ -47,6 +47,20 @@ export function handleRemoveComment(comment) {
                 alert('We found a error while try to Delete your comment, please try again.')
              });
      }
+}
+
+export function handlerUpdateCategory(newCategory, currentlyCategory) {
+    return (dispatch) => {
+            dispatch(updateCategory(newCategory, currentlyCategory))
+        return ApiAxios.put(`/categories/${currentlyCategory.path}`, newCategory)
+                .then( () => {
+                    dispatch(updatingCategoryPost(newCategory, currentlyCategory))
+                })
+                .catch( err => {
+                    console.log('Error Categories Actions: ', err);
+                    alert('We found a error while try to update the Category, please try again.')
+                })
+    }
 }
 
 

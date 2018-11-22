@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import './Categories.css'
 import { connect } from 'react-redux'
 
-import { handlerDeleteCategory, handlerAddCategory, handlerUpdateCategory } from '../actions/categories'
+import { handlerDeleteCategory, handlerAddCategory } from '../actions/categories'
+import { handlerUpdateCategory } from '../actions/share'
 
 import { Link } from 'react-router-dom'
 import NewCategory from '../components/NewCategory'

@@ -34,14 +34,11 @@ export function handlerDeleteCategory(category) {
     }
 }
 
-export function handlerUpdateCategory(newCategory, currentlyCategory) {
-    return (dispatch) => {
-            dispatch(updateCategory(newCategory, currentlyCategory))
-        return ApiAxios.put(`/categories/${currentlyCategory.path}`, newCategory)
-                .catch( err => {
-                    console.log('Error Categories Actions: ', err);
-                    alert('We found a error while try to update the Category, please try again.')
-                })
+export function updateCategory(newCategory, currentlyCategory) {
+    return {
+        type: UPDATE_CATEGORY,
+        newCategory,
+        currentlyCategory
     }
 }
 
@@ -56,13 +53,5 @@ function deleteCategory(category) {
     return {
         type: DELETE_CATEGORY,
         category
-    }
-}
-
-function updateCategory(newCategory, currentlyCategory) {
-    return {
-        type: UPDATE_CATEGORY,
-        newCategory,
-        currentlyCategory
     }
 }
