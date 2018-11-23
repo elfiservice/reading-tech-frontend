@@ -3,8 +3,7 @@ import { bindActionCreators } from 'redux';
 import './Categories.css'
 import { connect } from 'react-redux'
 
-import { handlerDeleteCategory, handlerAddCategory } from '../actions/categories'
-import { handlerUpdateCategory } from '../actions/share'
+import { handlerDeleteCategory, handlerAddCategory, handlerUpdateCategory } from '../actions/categories'
 
 import { Link } from 'react-router-dom'
 import NewCategory from '../components/NewCategory'
@@ -41,7 +40,8 @@ const Categories = (props) => {
                 <CategoryList 
                     categories={props.categories} 
                     deleteBtn={deleteBtn} 
-                    actions={props.actions} 
+                    actions={props.actions}
+                    posts={props.posts}
                 />
             </ul>   
         </div>

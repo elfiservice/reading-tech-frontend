@@ -11,6 +11,7 @@ const CategoryList = (props) => {
                         cat={cat} 
                         deleteBtn={props.deleteBtn} 
                         actions={props.actions}
+                        posts={props.posts}
                     />
                 </li>
             ))}

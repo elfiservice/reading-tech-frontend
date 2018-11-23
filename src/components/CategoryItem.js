@@ -70,12 +70,24 @@ class CategoryItem extends Component {
             name: categoryTrim,
             path: pathUnderscored
         }
-        this.props.actions.handlerUpdateCategory(category, this.state.currentlyCategory)
+        const { currentlyCategory } = this.state
+        if(this.checkEditedCategoryInPosts(currentlyCategory)) {
+            alert('Ops! Already exist POSTS to the Edited Category! Please try add a new one.')
+            this.toggleEditBtn()
+            return false
+        }
+        this.props.actions.handlerUpdateCategory(category, currentlyCategory)
         this.setState({
             editEnable: false,
             currentlyCategory: category,
             category: category.name,
         })   
+    }
+
+    checkEditedCategoryInPosts(currentlyCategory) {
+        const { posts } = this.props
+        const result = Object.values(posts).filter( post =>  post.category === currentlyCategory.name )
+        return result.length > 0
     }
 
     render() {

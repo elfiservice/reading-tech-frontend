@@ -7,7 +7,6 @@ export const ADD_NEW_POST = 'ADD_NEW_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const DEC_COMMENT_COUNT = 'DEC_COMMENT_COUNT'
-export const UPDATING_CATEGORY_POST = 'UPDATING_CATEGORY_POST'
 
 export function receivePosts(posts) {
     return {
@@ -68,14 +67,6 @@ export function deletePost(postId) {
     return {
         type: DELETE_POST,
         postId
-    }
-}
-
-export function updatingCategoryPost(newCategory, currentlyCategory) {
-    return {
-        type: UPDATING_CATEGORY_POST,
-        newCategory,
-        currentlyCategory
     }
 }
 
